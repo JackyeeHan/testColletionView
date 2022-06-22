@@ -62,7 +62,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         
         //設定每一行的間距
-        layout.minimumLineSpacing = 5
+        layout.minimumLineSpacing = 1
         
         //設定cell的大小
         layout.itemSize = CGSize(width: viewsize.width / numberOfItemInLine - 10, height: viewsize.width / numberOfItemInLine - 10)
@@ -71,7 +71,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
     }
     
-    //MARK:CollectionView DataSource & Delegate
+    
+    
+    
+    //CollectionView DataSource & Delegate
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count
     }
@@ -93,10 +96,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let nextVC = storyBoard.instantiateViewController(identifier: "myImageVC") as? MyImageViewController
         nextVC?.modalPresentationStyle = .fullScreen
         
-        if let nextVC = nextVC{
+        if let nextVC = nextVC {
+            
             nextVC.selectedImage = images[indexPath.row]
+            
             nextVC.nextImage = {
-                nextVC.theImageView.image = self.images[indexPath.row + 1]
+            nextVC.theImageView.image = self.images[indexPath.row + 1]
             }
             self.present(nextVC, animated: true, completion: nil)
             }
